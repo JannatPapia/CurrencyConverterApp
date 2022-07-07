@@ -39,7 +39,15 @@ struct CurrencyView: View {
     var body: some View {
         NavigationView{
             Form {
-                Section(header: Text("Convert a currency")) {
+                Section(header: Text("Convert a currency")
+                    .bold()
+                //    .fontWeight(bold())
+                    .foregroundColor(Color.black.opacity(0.7))
+                    .padding(.top, 10)
+                    .padding(.bottom, 10)
+                        
+                )
+                {
                     TextField("Enter an amount", text: $amount)
                         .keyboardType(.decimalPad)
                     

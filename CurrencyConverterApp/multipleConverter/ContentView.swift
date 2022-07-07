@@ -10,8 +10,8 @@
 import SwiftUI
 
 struct ContentView: View {
-    @State var input = "100"
-    @State var base = "USD"
+    @State var input = ""
+    @State var base = ""
     @State var currencyList = [String]()
     @FocusState private var inputIsFocused: Bool
     
@@ -45,9 +45,22 @@ struct ContentView: View {
             }
             List {
                 ForEach(currencyList, id: \.self) { currency in
-                    Text(currency)
+                 //   Text(currency)
+                    
+                    
+                    HStack(spacing: 15) {
+                        
+                        Text(getFlag(currency: currency ))
+                            .font(.system(size: 65))
+//                        VStack{
+                            
+                        Text(currency)
+ //                       }
+                    }
+                    
                 }
             }
+//            .padding(.top)
             VStack{
                 Rectangle()
                     .frame(height: 8.0)
@@ -68,10 +81,30 @@ struct ContentView: View {
               //      .keyboardType(.decimalPad)
                     .focused($inputIsFocused)
                 
-                Button("Convert!") {
+                
+                
+                Button(action: {
                     makeRequest(showAll: true, currencies: ["BDT", "SEK", "NOK"])
                         inputIsFocused = false
-                }.padding()
+                }){
+                  //  saveTask()
+                Text("Convert!")
+                .padding(10)
+                
+                    .frame(maxWidth: .infinity)
+ //                   .background(isThreeCharacter() ? Color.green : Color.green.opacity(0.5))
+                    .background(Color.green)
+                    .foregroundColor(Color.white)
+                    .clipShape(RoundedRectangle(cornerRadius: 10.0, style: .continuous))
+                }
+                .padding()
+                
+                
+//
+//                Button("Convert!") {
+//                    makeRequest(showAll: true, currencies: ["BDT", "SEK", "NOK"])
+//                        inputIsFocused = false
+//                }.padding()
             }
         }
             .onAppear{
@@ -80,8 +113,25 @@ struct ContentView: View {
     }
 }
 
-struct ContentView_Previews: PreviewProvider {
-    static var previews: some View {
-        ContentView()
-    }
-}
+//struct ContentView_Previews: PreviewProvider {
+//    static var previews: some View {
+//        ContentView()
+//    }
+//}
+
+
+
+//func getFlag(currency: String) -> String{
+//    
+//    let base = 127397
+//    
+//    var code = currency
+//    code.removeLast()
+//    
+//    var scalar = String.UnicodeScalarView()
+//    
+//    for i in code.utf16{
+//        scalar.append(UnicodeScalar(base + Int(i))!)
+//    }
+//    return String(scalar)
+//}

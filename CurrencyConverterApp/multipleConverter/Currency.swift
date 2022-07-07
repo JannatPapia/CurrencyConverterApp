@@ -22,7 +22,7 @@ func apiRequest(url: String, completion: @escaping (Currency) -> ()) {
     Session.default.request(url).responseDecodable(of: Currency.self) {response in
         switch response.result{
         case.success(let currencies):
-            print(currencies)
+         //   print(currencies)
             completion(currencies)
         case.failure(let error):
             print(error)
@@ -31,6 +31,20 @@ func apiRequest(url: String, completion: @escaping (Currency) -> ()) {
 }
 
 
+func getFlag(currency: String) -> String{
+    
+    let base = 127397
+    
+    var code = currency
+    code.removeLast()
+    
+    var scalar = String.UnicodeScalarView()
+    
+    for i in code.utf16{
+        scalar.append(UnicodeScalar(base + Int(i))!)
+    }
+    return String(scalar)
+}
 
 
 

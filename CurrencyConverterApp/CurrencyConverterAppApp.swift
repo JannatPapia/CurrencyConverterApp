@@ -11,7 +11,8 @@ import SwiftUI
 struct CurrencyConverterAppApp: App {
     var body: some Scene {
         WindowGroup {
-            CurrencyView()
+     //       Home()
+            mainTabView()
         }
     }
 }
